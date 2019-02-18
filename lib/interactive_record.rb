@@ -46,7 +46,7 @@ end
   end
 def self.find_by(hash)
   data= hash.values.first
-  data_fixed = data.to_s
+  data_fixed = data.class == Fixnum ? data : "'#{data}'"
   sql = "SELECT * FROM #{self.table_name} WHERE #{hash.keys.first} = #{data_fixed}"
   DB[:conn].execute(sql)
 end
