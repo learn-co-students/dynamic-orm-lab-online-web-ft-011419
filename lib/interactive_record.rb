@@ -44,7 +44,10 @@ end
     sql = "SELECT * FROM #{self.table_name} WHERE name = '#{name}'"
     DB[:conn].execute(sql)
   end
-def self.find_by
-
+def self.find_by(hash)
+  data= hash.values.first
+  data_fixed = data.to_s
+  sql = "SELECT * FROM #{self.table_name} WHERE #{hash.keys.first} = #{data_fixed}"
+  DB[:conn].execute(sql)
 end
 end
